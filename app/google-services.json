@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "116020593907",
+    "firebase_url": "https://rentalyuk-invinity-dev.firebaseio.com",
+    "project_id": "rentalyuk-invinity-dev",
+    "storage_bucket": "rentalyuk-invinity-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116020593907:android:52ed541b6b5dba5e",
+        "android_client_info": {
+          "package_name": "com.dev.invinity.rentalyuk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116020593907-v9bo8l8u109i3p88eitv4q42gdd4ug7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev.invinity.rentalyuk",
+            "certificate_hash": "5df24a24bfc458da71345ff9798bdc1f4b037777"
+          }
+        },
+        {
+          "client_id": "116020593907-mrvdc259esjopb8g3k8v9v7rlcncb3o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApXxRViAtxdLYoEAhHfL8E9PUfLThhwac"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116020593907-mrvdc259esjopb8g3k8v9v7rlcncb3o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

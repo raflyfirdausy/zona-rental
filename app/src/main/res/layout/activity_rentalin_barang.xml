@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.RentalinBarangActivity"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rentalin_barang"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_barang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/noimage"
+                        android:scaleType="centerInside"/>
+
+                </RelativeLayout>
+
+
+                <Button
+                    android:id="@+id/btn_tambahBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tambah_gambar_barang"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="#e9e9e9"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"/>
+
+                <EditText
+                    android:id="@+id/et_namaBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nama_barang"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20dp"
+                    android:inputType="text"/>
+
+                <!--Harga + Stok-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="70">
+
+                        <com.dev.invinity.rentalyuk.Customs.CustomEditText
+                            android:id="@+id/et_hargaBarang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:tag="Rp.  "
+                            android:hint="Harga Barang"
+                            android:textSize="20sp"
+                            android:gravity="bottom"
+                            android:inputType="number"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="30">
+
+                        <com.dev.invinity.rentalyuk.Customs.CustomEditText
+                            android:id="@+id/et_stokBarang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:tag=""
+                            android:hint="Stok"
+                            android:gravity="bottom"
+                            android:textSize="20sp"
+                            android:inputType="number"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_deskripsiBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:hint="@string/isi_deskripsi_barang"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pilih_kategori"
+                    android:textSize="16sp"
+                    android:textColor="@color/colortext"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/sp_kategoriBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/kategori">
+                </Spinner>
+
+                <Button
+                    android:id="@+id/btn_rentalinBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rentalin Barang"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activity.jajalActivity"
+    tools:showIn="@layout/activity_jajal"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_namaBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama barang"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/et_harga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Harga barang"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/bt_JAJAL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KLIK SEPORETE BRO"/>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.LoginFragment"
+    android:orientation="vertical">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:text="LOGIN"
+           android:gravity="center"
+           android:textSize="30sp"
+           android:textStyle="bold"
+           android:textColor="@color/colortext" />
+
+       <EditText
+           android:id="@+id/et_email"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Email"
+           android:layout_margin="10dp"
+           android:inputType="textEmailAddress"/>
+
+       <EditText
+           android:id="@+id/et_password"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Password"
+           android:layout_margin="10dp"
+           android:inputType="textPassword"/>
+
+       <Button
+           android:id="@+id/btn_login"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="LOGIN"
+           android:textStyle="bold"
+           android:textSize="20sp"
+           android:background="@color/colorPrimary"
+           android:textColor="@color/white"
+           android:layout_margin="15dp"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="center">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Belum Punya akun ?  "/>
+
+           <TextView
+               android:id="@+id/tv_daftardisini"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Daftar Disini"
+               android:clickable="true"
+               android:textColor="@color/colorPrimary"/>
+
+       </LinearLayout>
+
+
+   </LinearLayout>
+
+    <!--<com.google.android.gms.ads.AdView-->
+        <!--xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/adView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--ads:adSize="BANNER"-->
+        <!--ads:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
+    <!--</com.google.android.gms.ads.AdView>-->
+
+</RelativeLayout>

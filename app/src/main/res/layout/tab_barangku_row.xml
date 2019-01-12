@@ -1,0 +1,129 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/barang_itemBarangku"
+    android:layout_margin="@dimen/card_margin"
+    android:clickable="true"
+    android:elevation="3dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <!--Wadah Konten-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white">
+
+        <!--Gambar-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="30"
+            android:clickable="true"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/barang_thumbnailBarangku"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/a"/>
+        </LinearLayout>
+
+        <!--Tulisan-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="40"
+            android:clickable="true"
+            android:background="@color/white"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/barang_namaBarangku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:paddingBottom="3dp"
+                android:text="Nama barang"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/colortext"/>
+
+            <TextView
+                android:id="@+id/barang_hargaBarangku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Rp. 12.000"/>
+
+            <TextView
+                android:id="@+id/barang_stokBarangku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Stok : 12"/>
+
+        </LinearLayout>
+
+        <!--Button-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="30"
+            android:background="@color/white"
+            android:clickable="true"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_editBarangku"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="EDIT"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/button_hapusBarangku"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@color/cancel"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="HAPUS"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

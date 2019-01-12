@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1A9FD9</color>
+    <color name="colorPrimaryDark">#0E84B6</color>
+    <color name="colorAccent">#1A9FD9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#afafaf</color>
+    <color name="green_light">#EAEA</color>
+    <color name="colortext">#2b2a2a</color>
+    <color name="greylight">#f4f4f4</color>
+    <color name="grey_dark">#c2c2c2</color>
+    <color name="black">#000000</color>
+    <color name="booked">#0E84B6</color>
+    <color name="cancel">#b60e14</color>
+    <color name="kembali">#b6b60e</color>
+    <color name="di_sewa">#0d9d55</color>
+
+    <color name="address">#2F7092</color>
+    <color name="followers">#0D5D98</color>
+    <color name="headings">#3797CF</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#67EFC8</color>
+    <color name="gradStart">#63C9FF</color>
+    <color name="followersBg">#65DCE5</color>
+    <color name="followingBg">#49BEFF</color>
+    <color name="greymuda">#E5E5E5</color>
+</resources>

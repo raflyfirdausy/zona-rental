@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.LoginFragment"
+    android:background="#fff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="#00dad9"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="210dp"/>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edit_round"
+            android:hint="   Email"
+            android:textColor="#000000"
+            android:drawableTint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#ababab" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:minEms="6"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edit_round"
+            android:hint="   Password"
+            android:textColor="#000000"
+            android:drawableTint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#ababab" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lupa Password?"
+            android:textColor="#000000"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_round"
+            android:layout_marginTop="10dp"
+            android:text="SIGN IN"
+            android:textStyle="bold"/>
+
+        <TableRow
+            android:layout_height="1dp"
+            android:layout_width="250dp"
+            android:background="#656565"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+        </TableRow>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="50dp"
+                android:background="@drawable/facebook"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="38dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/google"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="38dp"/>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/twitter"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="38dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum punya akun? "
+                android:textColor="#000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar disini"
+                android:id="@+id/tv_daftardisini"
+                android:textColor="#3fc0d9"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
