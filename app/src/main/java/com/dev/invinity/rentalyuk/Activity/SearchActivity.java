@@ -97,10 +97,11 @@ public class SearchActivity extends AppCompatActivity {
                             barangModel = null;
                             ITEMLIST.clear();
                             for(DataSnapshot ds : dataSnapshot.getChildren()){
+                                keyPemilikBarang = ds.getKey();
                                 databaseReferenceX = databaseReference.child(Objects.requireNonNull(ds.getKey()));
                                 Query X = databaseReferenceX.orderByChild("namaBarang")
                                         .startAt(et_searchBarang.getText().toString())
-                                        .endAt(et_searchBarang.getText().toString()+"~"); // \uf8ff
+                                        .endAt(et_searchBarang.getText().toString()+"\uf8ff"); // \uf8ff  ~
                                 X.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

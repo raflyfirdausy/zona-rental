@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dev.invinity.rentalyuk.Models.BarangModel;
 import com.dev.invinity.rentalyuk.Models.Users;
 import com.dev.invinity.rentalyuk.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,7 +52,8 @@ public class BarangActivity extends AppCompatActivity {
 
     private android.support.v7.widget.AppCompatButton btn_rental;
 
-    private String keyBarang, keyPemilikBarang;;
+    private String keyBarang, keyPemilikBarang;
+    ;
     private ImageView img_barang;
     private CircleImageView img_FotoProfilePerental;
 
@@ -72,23 +70,23 @@ public class BarangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barang);
-        toolbar                 = (Toolbar) findViewById(R.id.toolbarBarang);
+        toolbar = (Toolbar) findViewById(R.id.toolbarBarang);
         collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
-        appBarLayout            = findViewById(R.id.appBarLayout);
-        tv_namaBarang           = findViewById(R.id.tv_namaBarang);
-        tv_hargaBarang          = findViewById(R.id.tv_hargaBarang);
-        tv_stokBarang           = findViewById(R.id.tv_stokBarang);
-        tv_terental             = findViewById(R.id.tv_terental);
-        tv_dilihat              = findViewById(R.id.tv_dilihat);
-        tv_deskripsiBarang      = findViewById(R.id.tv_deskripsiBarang);
+        appBarLayout = findViewById(R.id.appBarLayout);
+        tv_namaBarang = findViewById(R.id.tv_namaBarang);
+        tv_hargaBarang = findViewById(R.id.tv_hargaBarang);
+        tv_stokBarang = findViewById(R.id.tv_stokBarang);
+        tv_terental = findViewById(R.id.tv_terental);
+        tv_dilihat = findViewById(R.id.tv_dilihat);
+        tv_deskripsiBarang = findViewById(R.id.tv_deskripsiBarang);
 
         img_FotoProfilePerental = findViewById(R.id.img_FotoProfilePerental);
-        tv_namaToko             = findViewById(R.id.tv_namaToko);
-        tv_alamatToko           = findViewById(R.id.tv_alamatToko);
-        tv_noHpToko             = findViewById(R.id.tv_noHpToko);
+        tv_namaToko = findViewById(R.id.tv_namaToko);
+        tv_alamatToko = findViewById(R.id.tv_alamatToko);
+        tv_noHpToko = findViewById(R.id.tv_noHpToko);
 
-        img_barang              = findViewById(R.id.img_barang);
-        btn_rental              = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_rental);
+        img_barang = findViewById(R.id.img_barang);
+        btn_rental = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_rental);
 
         tv_namaBarang.setVisibility(View.VISIBLE);
 
@@ -102,10 +100,10 @@ public class BarangActivity extends AppCompatActivity {
         });
 
         //firebase
-        firebaseAuth        = FirebaseAuth.getInstance();
-        user                = firebaseAuth.getCurrentUser();
-        userID              = user.getUid();
-        databaseReference   = FirebaseDatabase.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        userID = user.getUid();
+        databaseReference = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("Users")
                 .child(getIntent().getStringExtra("keyPemilikBarang"));
@@ -122,7 +120,7 @@ public class BarangActivity extends AppCompatActivity {
                 .child("perental")
                 .child(userID);
 
-        databaseGetStok         = FirebaseDatabase.getInstance().getReference("Barang");
+        databaseGetStok = FirebaseDatabase.getInstance().getReference("Barang");
 
 
         btn_rental.setOnClickListener(new View.OnClickListener() {
@@ -136,17 +134,44 @@ public class BarangActivity extends AppCompatActivity {
 
     }
 
-    private void setData(){
-        if(getIntent().hasExtra("Key")){
+    private void setData() {
+        if (getIntent().hasExtra("Key")) {
             //keyBarang
-            keyBarang   = getIntent().getStringExtra("Key").toString();
-            title       = getIntent().getStringExtra("NamaBarang").toString();
+            keyBarang = getIntent().getStringExtra("Key").toString();
+            title = getIntent().getStringExtra("NamaBarang").toString();
+            keyPemilikBarang = getIntent().getStringExtra("keyPemilikBarang");
 
-            tv_namaBarang.setText(getIntent().getStringExtra("NamaBarang").toString());
-            tv_hargaBarang.setText("Rp. " + getIntent().getStringExtra("HargaBarang").toString());
-            tv_deskripsiBarang.setText(getIntent().getStringExtra("DeskripsiBarang").toString());
-            tv_stokBarang.setText(getIntent().getStringExtra("StokBarang").toString());
-            imgURL  = getIntent().getStringExtra("ImgURLBarang").toString();
+            imgURL = getIntent().getStringExtra("ImgURLBarang").toString();
+
+            FirebaseDatabase.getInstance()
+                    .getReference()
+                    .child("Barang")
+                    .child(keyPemilikBarang)
+                    .child(keyBarang)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            tv_dilihat.setText(dataSnapshot.child("dilihat").getValue(String.class));
+                            tv_stokBarang.setText(dataSnapshot.child("stokBarang").getValue(String.class));
+                            tv_namaBarang.setText(dataSnapshot.child("namaBarang").getValue(String.class));
+                            tv_hargaBarang.setText(dataSnapshot.child("hargaBarang").getValue(String.class));
+                            tv_deskripsiBarang.setText(dataSnapshot.child("deskripsiBarang").getValue(String.class));
+
+                            if(dataSnapshot.child("terental").exists()){
+                                tv_terental.setText(dataSnapshot.child("terental").getValue(String.class));
+                            } else {
+                                tv_terental.setText("0");
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
 
             Picasso.with(BarangActivity.this)
                     .load(imgURL)
@@ -164,7 +189,7 @@ public class BarangActivity extends AppCompatActivity {
 
                     if (scrollRange + verticalOffset == 0) {
                         collapsingToolbarLayout.setTitle(title);
-                    } else  {
+                    } else {
                         collapsingToolbarLayout.setTitle(" ");
                     }
                 }
@@ -180,8 +205,8 @@ public class BarangActivity extends AppCompatActivity {
                 tv_noHpToko.setText(dataSnapshot.getValue(Users.class).getNoTelp().toString());
 
 
-                if(!dataSnapshot.getValue(Users.class).getImgURL()
-                        .toString().equalsIgnoreCase("-")){
+                if (!dataSnapshot.getValue(Users.class).getImgURL()
+                        .toString().equalsIgnoreCase("-")) {
                     Picasso.with(getApplicationContext())
                             .load(dataSnapshot.getValue(Users.class).getImgURL())
                             .placeholder(R.drawable.logo)
@@ -205,12 +230,11 @@ public class BarangActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    private void Show_dialog(String pesan){
+    private void Show_dialog(String pesan) {
         final AlertDialog.Builder builder;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(BarangActivity.this, android.R.style.Theme_Material_Light_Dialog_Alert);
         } else {
             builder = new AlertDialog.Builder(BarangActivity.this);
@@ -233,9 +257,9 @@ public class BarangActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void dialog_berhasil(String title, String message){
+    private void dialog_berhasil(String title, String message) {
         final AlertDialog.Builder builder;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(BarangActivity.this, android.R.style.Theme_Material_Light_Dialog_Alert);
         } else {
             builder = new AlertDialog.Builder(BarangActivity.this);
@@ -246,7 +270,7 @@ public class BarangActivity extends AppCompatActivity {
                 .setPositiveButton("YA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       finish();
+                        finish();
                     }
                 })
                 .setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
@@ -257,7 +281,7 @@ public class BarangActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void proses_rental(){
+    private void proses_rental() {
 
         databaseGetStok.child(getIntent().getStringExtra("keyPemilikBarang"))
                 .child(getIntent().getStringExtra("Key")).child("stokBarang")
@@ -277,17 +301,21 @@ public class BarangActivity extends AppCompatActivity {
                             }
                         });
 
-                        Map pemilik         = new HashMap();
+                        String key = databaseReferencePemilik.push().getKey();
+
+                        Map pemilik = new HashMap();
                         pemilik.put("id_barang", getIntent().getStringExtra("Key"));
                         pemilik.put("id_perental", userID);
                         pemilik.put("status", "belum di set");
-                        databaseReferencePemilik.push().setValue(pemilik);
+                        databaseReferencePemilik.child(key).setValue(pemilik);
+//                        databaseReferencePemilik.push().setValue(pemilik);
 
                         Map perental = new HashMap();
                         perental.put("id_barang", getIntent().getStringExtra("Key"));
                         perental.put("id_pemilik", getIntent().getStringExtra("keyPemilikBarang"));
 
-                        databaseReferencePerental.push().setValue(perental);
+                        databaseReferencePerental.child(key).setValue(perental);
+//                        databaseReferencePerental.push().setValue(perental);
                     }
 
                     @Override

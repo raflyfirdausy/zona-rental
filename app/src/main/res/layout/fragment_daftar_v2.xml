@@ -100,6 +100,22 @@
             android:paddingRight="10dp"
             android:textColorHint="#ababab" />
 
+        <EditText
+            android:id="@+id/et_password2"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:minEms="6"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edit_round"
+            android:hint="   Ulang Password"
+            android:textColor="#000000"
+            android:drawableTint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#ababab" />
+
         <Button
             android:id="@+id/btn_daftar"
             android:layout_width="250dp"

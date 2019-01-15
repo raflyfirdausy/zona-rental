@@ -97,6 +97,7 @@ public class TabStatusPenyewaFragment extends Fragment {
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
 //                    make_toast(ds.getKey());
+                    final String KeyTransaksi = ds.getKey();
                     ITEMLIST.clear();
                     final String id_barang = ds.child("id_barang").getValue(String.class);
                     final String id_pemilik = ds.child("id_pemilik").getValue(String.class);
@@ -110,6 +111,7 @@ public class TabStatusPenyewaFragment extends Fragment {
                             barangModel = dataSnapshot.getValue(BarangModel.class);
                             barangModel.setKeyPemilikBarang(id_pemilik);
                             barangModel.setKey(id_barang);
+                            barangModel.setKeyTransaksi(KeyTransaksi);
                             ITEMLIST.add(barangModel);
                             mAdapter        = new TabStatusPenyewaAdapter(getActivity(), ITEMLIST);
                             recyclerView.setAdapter(mAdapter);

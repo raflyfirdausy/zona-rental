@@ -40,7 +40,7 @@ public class DaftarFragment extends Fragment implements View.OnClickListener {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
-    private EditText et_email, et_password, et_namaLengkap;
+    private EditText et_email, et_password,et_password2, et_namaLengkap;
     private Button btn_daftar;
     private ProgressDialog progressDialog;
     private RadioGroup rb_jenisKelamin;
@@ -66,6 +66,7 @@ public class DaftarFragment extends Fragment implements View.OnClickListener {
         View v          = inflater.inflate(R.layout.fragment_daftar_v2, container, false);
         et_email        = (EditText) v.findViewById(R.id.et_email);
         et_password     = (EditText) v.findViewById(R.id.et_password);
+        et_password2     = (EditText) v.findViewById(R.id.et_password2);
         et_namaLengkap  = (EditText) v.findViewById(R.id.et_namaLengkap);
         btn_daftar      = (Button) v.findViewById(R.id.btn_daftar);
         rb_jenisKelamin = (RadioGroup) v.findViewById(R.id.rb_jenisKelamin);
@@ -125,6 +126,23 @@ public class DaftarFragment extends Fragment implements View.OnClickListener {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
+                        }
+                    })
+                    .show();
+        } else if(!et_password.getText().toString().equals(et_password2.getText().toString())){
+            final AlertDialog.Builder builder;
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Material_Light_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(getActivity());
+            }
+
+            builder.setTitle("Peringatan!")
+                    .setMessage("Password Harus Sama !")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            et_password2.setError("Password Harus Sama");
                         }
                     })
                     .show();

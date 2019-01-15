@@ -9,7 +9,15 @@ public class BarangModel {
     String stokBarang;
     String key;
     String keyPemilikBarang;
+    String keyTransaksi;
 
+    public String getKeyTransaksi() {
+        return keyTransaksi;
+    }
+
+    public void setKeyTransaksi(String keyTransaksi) {
+        this.keyTransaksi = keyTransaksi;
+    }
 
     public BarangModel(){
         //Kosong ? :v
