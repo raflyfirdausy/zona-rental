@@ -46,7 +46,7 @@ dependencies {
     // volley http library
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     // glide image library
     implementation 'com.github.bumptech.glide:glide:4.8.0'
@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-database:16.0.5'
     implementation 'com.google.firebase:firebase-storage:16.0.5'
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
 //    implementation 'com.firebaseui:firebase-ui-database:4.1.0'      // FirebaseUI for Firebase Realtime Database
 //    implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'     // FirebaseUI for Cloud Firestore
 //    implementation 'com.firebaseui:firebase-ui-auth:4.1.0'          // FirebaseUI for Firebase Auth

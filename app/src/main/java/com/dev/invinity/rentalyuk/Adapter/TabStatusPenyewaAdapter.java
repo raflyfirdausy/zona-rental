@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.dev.invinity.rentalyuk.Fragment.TabStatusPenyewaFragment;
-import com.dev.invinity.rentalyuk.Models.Barang;
 import com.dev.invinity.rentalyuk.Models.BarangModel;
 import com.dev.invinity.rentalyuk.R;
 import com.squareup.picasso.Picasso;
@@ -36,23 +32,6 @@ public class TabStatusPenyewaAdapter extends RecyclerView.Adapter<TabStatusPenye
         this.barangList = barangList;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, price;
-        public ImageView thumbnail;
-        public Button button_ulasan;
-        public CardView cardView;
-
-        @SuppressLint("ResourceAsColor")
-        public MyViewHolder(View view) {
-            super(view);
-            cardView        = (CardView) view.findViewById(R.id.barang_item_penyewa);
-            name            = view.findViewById(R.id.barang_namaPenyewa);
-            price           = view.findViewById(R.id.barang_hargaPenyewa);
-            thumbnail       = view.findViewById(R.id.barang_thumbnailPenyewa);
-            button_ulasan   = view.findViewById(R.id.button_ulasanPenyewa);
-        }
-    }
-
     @NonNull
     @Override
     public TabStatusPenyewaAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -68,6 +47,24 @@ public class TabStatusPenyewaAdapter extends RecyclerView.Adapter<TabStatusPenye
         holder.name.setText(barangModel.getNamaBarang());
         holder.price.setText("Rp. " + barangModel.getHargaBarang());
 
+
+        if (barangModel.getStatus().toString().equalsIgnoreCase("Booked")) {
+            holder.status.setText("Booked");
+            holder.status.setBackgroundResource(R.color.booked);
+        } else if (barangModel.getStatus().toString().equalsIgnoreCase("Kembali")) {
+            holder.status.setText("Kembali");
+            holder.status.setBackgroundResource(R.color.kembali);
+        } else if (barangModel.getStatus().toString().equalsIgnoreCase("Disewa")) {
+            holder.status.setText("Disewa");
+            holder.status.setBackgroundResource(R.color.di_sewa);
+        } else if (barangModel.getStatus().toString().equalsIgnoreCase("Cancel")) {
+            holder.status.setText("Cancel");
+            holder.status.setBackgroundResource(R.color.cancel);
+        } else {
+            holder.status.setText("Belum Di Konfirmasi");
+            holder.status.setBackgroundResource(R.color.black);
+        }
+
         Picasso.with(context)
                 .load(barangModel.getImgURLBarang())
                 .placeholder(R.drawable.logo)
@@ -79,5 +76,24 @@ public class TabStatusPenyewaAdapter extends RecyclerView.Adapter<TabStatusPenye
     @Override
     public int getItemCount() {
         return barangList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView name, price;
+        public ImageView thumbnail;
+        public Button button_ulasan;
+        public CardView cardView;
+        public TextView status;
+
+        @SuppressLint("ResourceAsColor")
+        public MyViewHolder(View view) {
+            super(view);
+            cardView = (CardView) view.findViewById(R.id.barang_item_penyewa);
+            name = view.findViewById(R.id.barang_namaPenyewa);
+            status = view.findViewById(R.id.barang_statusPenyewa);
+            price = view.findViewById(R.id.barang_hargaPenyewa);
+            thumbnail = view.findViewById(R.id.barang_thumbnailPenyewa);
+            button_ulasan = view.findViewById(R.id.button_ulasanPenyewa);
+        }
     }
 }

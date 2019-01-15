@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dev.invinity.rentalyuk.Admob.AdManager;
 import com.dev.invinity.rentalyuk.Models.Users;
 import com.dev.invinity.rentalyuk.R;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -157,7 +159,7 @@ public class BarangActivity extends AppCompatActivity {
                             tv_hargaBarang.setText(dataSnapshot.child("hargaBarang").getValue(String.class));
                             tv_deskripsiBarang.setText(dataSnapshot.child("deskripsiBarang").getValue(String.class));
 
-                            if(dataSnapshot.child("terental").exists()){
+                            if (dataSnapshot.child("terental").exists()) {
                                 tv_terental.setText(dataSnapshot.child("terental").getValue(String.class));
                             } else {
                                 tv_terental.setText("0");
@@ -170,7 +172,6 @@ public class BarangActivity extends AppCompatActivity {
 
                         }
                     });
-
 
 
             Picasso.with(BarangActivity.this)
@@ -270,6 +271,10 @@ public class BarangActivity extends AppCompatActivity {
                 .setPositiveButton("YA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        InterstitialAd interstitialAd = AdManager.getAd();
+                        if (interstitialAd != null) {
+                            interstitialAd.show();
+                        }
                         finish();
                     }
                 })
@@ -316,6 +321,8 @@ public class BarangActivity extends AppCompatActivity {
 
                         databaseReferencePerental.child(key).setValue(perental);
 //                        databaseReferencePerental.push().setValue(perental);
+
+
                     }
 
                     @Override

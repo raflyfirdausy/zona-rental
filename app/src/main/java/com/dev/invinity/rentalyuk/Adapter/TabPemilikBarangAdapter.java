@@ -38,6 +38,7 @@ public class TabPemilikBarangAdapter extends RecyclerView.Adapter<TabPemilikBara
     private Context context;
     private List<BarangModel2> barangList;
     private String actionPilih = "Booked";
+    public String id_perental;
 
 ////////////////////////     End Deklarasi Variable     //////////////////////////
 
@@ -113,6 +114,7 @@ public class TabPemilikBarangAdapter extends RecyclerView.Adapter<TabPemilikBara
                                             public void onSuccess(Void aVoid) {
                                                 Toast.makeText(context, "Success Update!", Toast.LENGTH_LONG).show();
                                                 dialog.dismiss();
+
 
                                                 if (actionPilih.equalsIgnoreCase("Kembali") ||
                                                         actionPilih.equalsIgnoreCase("Cancel")) {
@@ -198,37 +200,25 @@ public class TabPemilikBarangAdapter extends RecyclerView.Adapter<TabPemilikBara
 
 
 
-
-
                                 FirebaseDatabase.getInstance()
                                         .getReference()
                                         .child("Rental")
-                                        .child("perental")
+                                        .child("pemilik")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child(barangModel.getKeyTransaksi())
-                                        .child("status")
                                         .addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                if (dataSnapshot.exists()) {
-                                                    FirebaseDatabase.getInstance()
-                                                            .getReference()
-                                                            .child("Rental")
-                                                            .child("perental")
-                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                            .child(barangModel.getKeyTransaksi())
-                                                            .child("status")
-                                                            .setValue(actionPilih);
-                                                } else {
-                                                    FirebaseDatabase.getInstance()
-                                                            .getReference()
-                                                            .child("Rental")
-                                                            .child("perental")
-                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                            .child(barangModel.getKeyTransaksi())
-                                                            .child("status")
-                                                            .setValue(actionPilih);
-                                                }
+                                                String JANCUK = dataSnapshot.child("id_perental").getValue(String.class);
+
+                                                FirebaseDatabase.getInstance()
+                                                        .getReference()
+                                                        .child("Rental")
+                                                        .child("perental")
+                                                        .child(JANCUK)
+                                                        .child(barangModel.getKeyTransaksi())
+                                                        .child("status")
+                                                        .setValue(actionPilih);
                                             }
 
                                             @Override
@@ -236,6 +226,9 @@ public class TabPemilikBarangAdapter extends RecyclerView.Adapter<TabPemilikBara
 
                                             }
                                         });
+
+
+
                             }
                         })
                         .setNegativeButton("BATAL", new DialogInterface.OnClickListener() {

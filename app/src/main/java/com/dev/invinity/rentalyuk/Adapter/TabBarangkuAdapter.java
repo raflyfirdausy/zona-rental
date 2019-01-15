@@ -17,10 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dev.invinity.rentalyuk.Activity.BarangActivity;
 import com.dev.invinity.rentalyuk.Activity.RentalinBarangActivity;
 import com.dev.invinity.rentalyuk.Models.BarangModel;
-import com.dev.invinity.rentalyuk.Models.BarangModel2;
 import com.dev.invinity.rentalyuk.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -60,39 +58,6 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
         this.context = context;
         this.barangList = barangList;
     }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, price , stok;
-        public ImageView thumbnail;
-        public Button button_editBarangku,button_hapusBarangku;
-        public CardView cardView;
-
-        @SuppressLint("ResourceAsColor")
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            cardView                = (CardView) itemView.findViewById(R.id.barang_itemBarangku);
-            name                    = itemView.findViewById(R.id.barang_namaBarangku);
-            price                   = itemView.findViewById(R.id.barang_hargaBarangku);
-            stok                    = itemView.findViewById(R.id.barang_stokBarangku);
-            thumbnail               = itemView.findViewById(R.id.barang_thumbnailBarangku);
-            button_editBarangku     = itemView.findViewById(R.id.button_editBarangku);
-            button_hapusBarangku    = itemView.findViewById(R.id.button_hapusBarangku);
-
-            //firebase
-            firebaseAuth        = FirebaseAuth.getInstance();
-            user                = firebaseAuth.getCurrentUser();
-            userID              = user.getUid();
-            databaseReference   = FirebaseDatabase.getInstance()
-                                .getReference()
-                                .child("Barang")
-                                .child(userID);
-            databaseCek         = FirebaseDatabase.getInstance()
-                                .getReference("Rental/pemilik/")
-                                .child(userID);
-        }
-    }
-
-
 
     @NonNull
     @Override
@@ -135,7 +100,7 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder;
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert);
                 } else {
                     builder = new AlertDialog.Builder(context);
@@ -143,7 +108,7 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
 
                 builder.setTitle("Peringatan")
                         .setCancelable(false)
-                        .setMessage("Hapus Barang " +  holder.name.getText() + " ?")
+                        .setMessage("Hapus Barang " + holder.name.getText() + " ?")
                         .setPositiveButton("HAPUS", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -153,13 +118,14 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
                                 databaseCek.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-                                            if(ds.child("id_barang").getValue(String.class).equalsIgnoreCase(barangModel.getKey())){
+                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                            if (ds.child("id_barang").getValue(String.class).equalsIgnoreCase(barangModel.getKey())) {
                                                 status = true;
                                             }
+
                                         }
 
-                                        if(status == false){
+                                        if (status == false) {
                                             databaseReference.child(barangModel.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
@@ -183,8 +149,6 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
                                 });
 
 
-
-
                             }
                         })
                         .setNegativeButton("BATAL", new DialogInterface.OnClickListener() {
@@ -203,13 +167,13 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
         return barangList.size();
     }
 
-    private void make_toast(String pesan){
+    private void make_toast(String pesan) {
         Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show();
     }
 
-    private void make_alertDialog(String title, String message){
+    private void make_alertDialog(String title, String message) {
         final AlertDialog.Builder builder;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert);
         } else {
             builder = new AlertDialog.Builder(context);
@@ -224,5 +188,36 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
                     }
                 })
                 .show();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView name, price, stok;
+        public ImageView thumbnail;
+        public Button button_editBarangku, button_hapusBarangku;
+        public CardView cardView;
+
+        @SuppressLint("ResourceAsColor")
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            cardView = (CardView) itemView.findViewById(R.id.barang_itemBarangku);
+            name = itemView.findViewById(R.id.barang_namaBarangku);
+            price = itemView.findViewById(R.id.barang_hargaBarangku);
+            stok = itemView.findViewById(R.id.barang_stokBarangku);
+            thumbnail = itemView.findViewById(R.id.barang_thumbnailBarangku);
+            button_editBarangku = itemView.findViewById(R.id.button_editBarangku);
+            button_hapusBarangku = itemView.findViewById(R.id.button_hapusBarangku);
+
+            //firebase
+            firebaseAuth = FirebaseAuth.getInstance();
+            user = firebaseAuth.getCurrentUser();
+            userID = user.getUid();
+            databaseReference = FirebaseDatabase.getInstance()
+                    .getReference()
+                    .child("Barang")
+                    .child(userID);
+            databaseCek = FirebaseDatabase.getInstance()
+                    .getReference("Rental/pemilik/")
+                    .child(userID);
+        }
     }
 }

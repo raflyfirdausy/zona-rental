@@ -20,10 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dev.invinity.rentalyuk.Admob.AdManager;
 import com.dev.invinity.rentalyuk.Fragment.HomeFragment;
 import com.dev.invinity.rentalyuk.Models.Barang;
 import com.dev.invinity.rentalyuk.Models.BarangModel;
 import com.dev.invinity.rentalyuk.R;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -83,6 +85,7 @@ public class SearchActivity extends AppCompatActivity {
         rv_kontenSearch.setItemAnimator(new DefaultItemAnimator());
 //        rv_kontenSearch.setAdapter(mAdapter);
         rv_kontenSearch.setNestedScrollingEnabled(false);
+
 
 
         et_searchBarang.setOnEditorActionListener(new TextView.OnEditorActionListener() {

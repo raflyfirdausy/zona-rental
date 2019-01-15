@@ -121,7 +121,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         sayaOverviewFragment = new SayaOverviewFragment();
 
+        InterstitialAd interstitialAd = AdManager.getAd();
+        if (interstitialAd != null) {
+            interstitialAd.show();
+        }
 
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        AdManager adManager = new AdManager(this, "ca-app-pub-3940256099942544/1033173712");
+        adManager.createAd();
 
         //adMob
 //        InterstitialAd interstitialAd = AdManager.getAd();

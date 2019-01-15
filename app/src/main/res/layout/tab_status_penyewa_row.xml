@@ -75,6 +75,18 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:text="Rp. 12.000"/>
 
+            <TextView
+                android:id="@+id/barang_statusPenyewa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/di_sewa"
+                android:gravity="center"
+                android:paddingBottom="3dp"
+                android:text="STATUS"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <!--Button-->

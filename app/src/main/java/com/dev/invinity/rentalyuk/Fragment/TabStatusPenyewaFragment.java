@@ -7,20 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.dev.invinity.rentalyuk.Adapter.TabStatusPenyewaAdapter;
-import com.dev.invinity.rentalyuk.Models.Barang;
 import com.dev.invinity.rentalyuk.Models.BarangModel;
 import com.dev.invinity.rentalyuk.R;
-import com.dev.invinity.rentalyuk.app.MyApplication;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,10 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +41,7 @@ public class TabStatusPenyewaFragment extends Fragment {
 
     //firebase
     private StorageReference storageReference;
-    private DatabaseReference databaseReferencePerental, databaseReferencePemilik, databaseReferenceBarang,databaseReference;
+    private DatabaseReference databaseReferencePerental, databaseReferencePemilik, databaseReferenceBarang, databaseReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
@@ -63,7 +53,6 @@ public class TabStatusPenyewaFragment extends Fragment {
 ////////////////////////     End Deklarasi Variable     //////////////////////////
 
 
-
     public TabStatusPenyewaFragment() {
         // Required empty public constructor
     }
@@ -73,11 +62,11 @@ public class TabStatusPenyewaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_tab_status_penyewa, container, false);
+        View v = inflater.inflate(R.layout.fragment_tab_status_penyewa, container, false);
 
-        recyclerView    = v.findViewById(R.id.konten_statusPenyewa);
-        ITEMLIST        = new ArrayList<>();
-        mAdapter        = new com.dev.invinity.rentalyuk.Adapter.TabStatusPenyewaAdapter(getActivity(),ITEMLIST);
+        recyclerView = v.findViewById(R.id.konten_statusPenyewa);
+        ITEMLIST = new ArrayList<>();
+        mAdapter = new com.dev.invinity.rentalyuk.Adapter.TabStatusPenyewaAdapter(getActivity(), ITEMLIST);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -86,22 +75,30 @@ public class TabStatusPenyewaFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
         //firebase
-        firebaseAuth        = FirebaseAuth.getInstance();
-        user                = firebaseAuth.getCurrentUser();
-        userID              = user.getUid();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        userID = user.getUid();
 
-        databaseReferencePerental   = FirebaseDatabase.getInstance().getReference("Rental/perental/" + userID);
+        databaseReferencePerental = FirebaseDatabase.getInstance().getReference("Rental/perental/" + userID);
         databaseReferencePerental.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 //                    make_toast(ds.getKey());
                     final String KeyTransaksi = ds.getKey();
                     ITEMLIST.clear();
                     final String id_barang = ds.child("id_barang").getValue(String.class);
                     final String id_pemilik = ds.child("id_pemilik").getValue(String.class);
+//                    final String finalStatus = ds.child("status").getValue(String.class);
+                    String status;
 
+                    if(ds.child("status").exists()){
+                        status = ds.child("status").getValue(String.class);
+                    } else {
+                        status = "null";
+                    }
+                    final String finalStatus = status;
                     databaseReferenceBarang = FirebaseDatabase.getInstance().getReference("Barang/" + id_pemilik + "/" + id_barang);
                     databaseReferenceBarang.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -109,11 +106,12 @@ public class TabStatusPenyewaFragment extends Fragment {
                             BarangModel barangModel = null;
 
                             barangModel = dataSnapshot.getValue(BarangModel.class);
+                            barangModel.setStatus(finalStatus);
                             barangModel.setKeyPemilikBarang(id_pemilik);
                             barangModel.setKey(id_barang);
                             barangModel.setKeyTransaksi(KeyTransaksi);
                             ITEMLIST.add(barangModel);
-                            mAdapter        = new TabStatusPenyewaAdapter(getActivity(), ITEMLIST);
+                            mAdapter = new TabStatusPenyewaAdapter(getActivity(), ITEMLIST);
                             recyclerView.setAdapter(mAdapter);
 
                         }
@@ -171,7 +169,7 @@ public class TabStatusPenyewaFragment extends Fragment {
 //        MyApplication.getInstance().addToRequestQueue(request);
 //    }
 
-    private void make_toast(String pesan){
+    private void make_toast(String pesan) {
         Toast.makeText(getActivity(), pesan, Toast.LENGTH_LONG).show();
     }
 

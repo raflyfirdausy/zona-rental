@@ -10,6 +10,15 @@ public class BarangModel {
     String key;
     String keyPemilikBarang;
     String keyTransaksi;
+    String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getKeyTransaksi() {
         return keyTransaksi;

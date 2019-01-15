@@ -43,6 +43,10 @@ public class AuthActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        AdManager adManager = new AdManager(this, "ca-app-pub-3940256099942544/1033173712");
+        adManager.createAd();
+
         if(user != null){
 
             Intent intent = new Intent(this, MainActivity.class);
