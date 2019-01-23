@@ -162,9 +162,7 @@ public class DaftarFragment extends Fragment implements View.OnClickListener {
                             progressDialog.dismiss();
 
                             if(task.isSuccessful()){
-                                et_email.setText("");
-                                et_password.setText("");
-                                make_toast("Pendaftaran berhasil , Silahkan Login!");
+
 
                                 //save into realtime cuk
                                 String user_id                      = firebaseAuth.getCurrentUser().getUid();
@@ -188,7 +186,8 @@ public class DaftarFragment extends Fragment implements View.OnClickListener {
 
                                 current_user_db.setValue(newPost);
 
-
+                                et_email.setText("");
+                                et_password.setText("");
 
                                 //pindah fragment
                                 fragmentManager.beginTransaction()

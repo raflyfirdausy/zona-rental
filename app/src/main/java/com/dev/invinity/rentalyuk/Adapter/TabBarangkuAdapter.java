@@ -105,10 +105,10 @@ public class TabBarangkuAdapter extends RecyclerView.Adapter<TabBarangkuAdapter.
                 } else {
                     builder = new AlertDialog.Builder(context);
                 }
-
                 builder.setTitle("Peringatan")
                         .setCancelable(false)
                         .setMessage("Hapus Barang " + holder.name.getText() + " ?")
+
                         .setPositiveButton("HAPUS", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

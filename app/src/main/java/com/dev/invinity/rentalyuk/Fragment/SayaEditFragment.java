@@ -343,7 +343,7 @@ public class SayaEditFragment extends Fragment implements View.OnClickListener {
                     if (task.isSuccessful()) {
                         downloadURL = task.getResult();
 
-                        //save Ke database Cuk!
+                        //save Ke database
                         Users data   = new Users(
                                 etNama.getText().toString(),
                                 etTelp.getText().toString(),
